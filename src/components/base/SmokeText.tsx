@@ -58,6 +58,6 @@ export default ({children}) => {
 //
 // 	svg += '</text></svg>';
 //
-// 	return <span dangerouslySetInnerHTML={{__html: svg}}></span>;
+// 	return <div style={{backgroundImage: `url(${btoa(svg)})`, width: '100%', height: stringHeight * stringsCount + 2}}></div>;
 // };
 //
