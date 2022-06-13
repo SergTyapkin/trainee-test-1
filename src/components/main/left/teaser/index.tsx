@@ -43,7 +43,7 @@ export default ({item, index, transform}) => {
 						src={image_src}
 						width={image_width}
 						height={image_height}
-						// transform={transform}
+						transform={transform}
 					/>
 				</Block>
 			)}
