@@ -1,5 +1,7 @@
+// import baseSheet from '../../../base/styles';
+
 export default locator => {
-	return {
+	const styles = {
 		'.mimic_left .teaser': {
 			'cursor': 'pointer',
 			'word-wrap': 'break-word',
@@ -61,4 +63,8 @@ export default locator => {
 			'text-decoration': 'underline',
 		},
 	};
+
+	// Object.assign(styles, baseSheet(locator));
+
+	return styles;
 };
