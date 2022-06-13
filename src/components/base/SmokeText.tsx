@@ -1,5 +1,4 @@
 import * as React from "react";
-import {randomInt} from "crypto";
 
 const toReplace = [
 	['a', 'а'],
@@ -18,7 +17,7 @@ const splitChance = 0.25;
 
 export default ({children}) => {
 	const result = Array.from(children);
-	const SplitPos100proc = randInt(result.length-1); // Позиция на которую точно вставится невидимый символ-разделитель. Причем не после последнего символа
+	const oneSplitPos = randInt(result.length-1); // Позиция на которую точно вставится невидимый символ-разделитель. Причем не после последнего символа
 
 	result.forEach((sym, idx) => {
 		// Заменяем символы на похожие из другого языка. Чтобы добавить новые символы, достаточно просто дописать их в массив toReplace
@@ -28,7 +27,7 @@ export default ({children}) => {
 
 		// Возможно, вставляем невидимый символ нулевой ширины U+FEFF после символа, в зависимости от шанса
 		// Так же ТОЧНО вставляем один символ в случайную позицию, чтобы тесты на это нормально работали
-		if (Math.random() <= splitChance || idx === SplitPos100proc) {
+		if (Math.random() <= splitChance || idx === oneSplitPos) {
 			result[idx] += '\uFEFF';
 		}
 	});
