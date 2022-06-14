@@ -1,3 +1,5 @@
+// import baseSheet from '../../../base/styles';
+
 export default locator => {
 	return {
 		'.mimic_left .teaser': {

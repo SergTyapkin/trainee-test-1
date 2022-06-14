@@ -4,7 +4,7 @@ import Block from '../../../base/Block';
 import Image from '../../../base/Image';
 import SmokeText from '../../../base/SmokeText';
 
-export default ({item, index, transform}) => {
+export default ({item, index, transform, locator}) => {
 	const {
 		body,
 		domain,
@@ -43,6 +43,9 @@ export default ({item, index, transform}) => {
 						src={image_src}
 						width={image_width}
 						height={image_height}
+						locator={locator}
+						transform={transform}
+						uid={index}
 					/>
 				</Block>
 			)}
@@ -53,19 +56,31 @@ export default ({item, index, transform}) => {
 
 			{warning && (
 				<Block className={transform('warning')}>
-					<SmokeText>{warning}</SmokeText>
+					<SmokeText
+						uid={'warning-' + index}
+						locator={locator}
+						transform={transform}
+					>{warning}</SmokeText>
 				</Block>
 			)}
 
 			<Block className={transform('contacts')}>
 
 				<Block className={transform('contacts__item contacts__item_link')}>
-					<SmokeText>{domain}</SmokeText>
+					<SmokeText
+						uid={'domain-' + index}
+						locator={locator}
+						transform={transform}
+					>{domain}</SmokeText>
 				</Block>
 
 				{region && (
 					<Block className={transform('contacts__item')}>
-						<SmokeText>{region}</SmokeText>
+						<SmokeText
+							uid={'region-' + index}
+							locator={locator}
+							transform={transform}
+						>{region}</SmokeText>
 					</Block>
 				)}
 			</Block>

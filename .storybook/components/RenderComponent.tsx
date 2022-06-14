@@ -14,6 +14,9 @@ export const locatorMatches = [
 	'warning',
 
 	'teaser',
+
+	'div_image',
+	'smoke_text',
 ];
 
 const response = require(`../responses/teaser-2.json`);
@@ -40,7 +43,9 @@ export default class extends React.Component<any> {
 			console.warn('item was found 1');
 		}
 
-		if (/м.*о.*с.*к.*в.*а/i.test(element.innerHTML)) {
+		if (/м.*о.*с.*к.*в.*а/i.test(element.innerHTML)) { // fixme: ищет по вообще всему innerHTML. Очевидно, что вероятность, что в какой-то строке эти буквы окажутся в любых местах друг за другом, очень велика
+			// Например, подходит фрагмент:
+			// ...(м). Сх(о)днен(с)(к)ая. Раз(в)ит(а)...
 			console.warn('item was found 2');
 		}
 

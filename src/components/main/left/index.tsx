@@ -7,6 +7,7 @@ import Block from '../../base/Block';
 import sheet from './styles';
 
 import Teaser from './teaser/index';
+import {locatorMatches} from "../../../../.storybook/components/RenderComponent";
 
 let style = null;
 
@@ -24,6 +25,7 @@ export default class extends React.Component<any> {
 		const {
 			items,
 			transform,
+			locator
 		} = this.props;
 
 		return (
@@ -34,6 +36,7 @@ export default class extends React.Component<any> {
 						index={index}
 						transform={transform}
 						key={index}
+						locator={locator}
 					/>
 				))}
 			</Block>
