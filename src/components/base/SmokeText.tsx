@@ -15,9 +15,16 @@ function randInt(max) {
 
 const splitChance = 0.25;
 
-export default ({children}) => {
+export default (props) => {
+	const {
+		children,
+		uid,
+		locator,
+		transform,
+	} = props;
+
 	const result = Array.from(children);
-	const oneSplitPos = randInt(result.length-1); // Позиция на которую точно вставится невидимый символ-разделитель. Причем не после последнего символа
+	const oneSplitPos = randInt(result.length-1); // Позиция, на которую точно вставится невидимый символ-разделитель. Причем не после последнего символа
 
 	result.forEach((sym, idx) => {
 		// Заменяем символы на похожие из другого языка. Чтобы добавить новые символы, достаточно просто дописать их в массив toReplace
@@ -31,8 +38,17 @@ export default ({children}) => {
 			result[idx] += '\uFEFF';
 		}
 	});
+	const resultText = result.join('');
 
-	return <>{result.join('')}</>;
+	// Ещё и на всякий случай вставим получившийся текст в ::before
+	const textClassName = 'smoke_text-' + uid;
+	const newStyles = {};
+	newStyles[`.${textClassName}::before`] = {
+		content: '"' + resultText + '"',
+	}
+	locator.insertSheet(newStyles);
+
+	return <span className={transform(textClassName)}></span>;
 };
 
 

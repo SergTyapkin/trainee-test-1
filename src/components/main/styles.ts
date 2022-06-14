@@ -20,12 +20,5 @@ export default locator => {
 		'.mimic .picture': {
 			'overflow': 'hidden',
 		},
-
-		'.mimic .picture img': {
-			'display': 'block',
-			'max-width': locator.calcString(100, '%'),
-			'max-height': locator.calcString(100, '%'),
-			'transition': 'all 0.2s ease-in-out',
-		},
 	};
 };

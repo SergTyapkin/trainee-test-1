@@ -1,30 +1,27 @@
 import * as React from 'react';
 
-let globalImagesCount = 0
-export default ({src, width, height, transform, ...props}) => {
-	const imageClassName = transform('div_image' + '-' + globalImagesCount);
-	globalImagesCount++;
+export default (props) => {
+	const {
+		width,
+		height,
+		src,
+		transform,
+		locator,
+		uid,
+	} = props;
+
+	const imageClassName = 'div_image_' + uid;
+
+	const newStyles = {};
+	newStyles['.' + imageClassName] = {
+		'background-image': `url(${src})`,
+		width: locator.calcString(width, 'px'),
+		height: locator.calcString(height, 'px'),
+		transition: 'all 0.2s ease-in-out',
+	}
+	locator.insertSheet(newStyles);
 
 	return (
-		<>
-			<style>
-			.{imageClassName} {`{
-				background-image: url(${src});
-				width: ${width}px;
-				height: ${height}px;
-			}`}
-			</style>
-			<div className={imageClassName}
-				// fixme: стили ведь надо в отдельный файл выносить. Но я не понял, как прокинуть в него пропсы,
-				//  так что вы видите костыль сверху с тегом style
-
-				// style={{
-				// 	backgroundImage: `url(${src})`,
-				// 	width: width + 'px',
-				// 	height: height + 'px',
-				// }}
-				{...props}
-			/>
-		</>
+		<div className={transform(imageClassName)}/>
 	);
 };

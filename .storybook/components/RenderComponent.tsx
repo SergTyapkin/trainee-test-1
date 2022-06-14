@@ -14,6 +14,9 @@ export const locatorMatches = [
 	'warning',
 
 	'teaser',
+
+	'div_image',
+	'smoke_text',
 ];
 
 const response = require(`../responses/teaser-2.json`);
